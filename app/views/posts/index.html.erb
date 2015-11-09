@@ -4,6 +4,10 @@
     <div class="media-body">
       <div class="media-heading">
         <p> <%= link_to post.title, post_path(post.id)%></p>
+        <small>
+          submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+          <%= post.comments.count %> comments
+        </small>
       </div>
     </div>
   </div>
