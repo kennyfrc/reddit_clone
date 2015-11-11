@@ -76,4 +76,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = {host: 'lit-everglades-4091.herokuapp.com' }
+
+  config.force_ssl = true
+
 end
