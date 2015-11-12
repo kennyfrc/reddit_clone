@@ -1,3 +1,8 @@
-<h1> <%= @post.title %> </h1>
-<p> <%= @post.body %> </p>
+<!-- call the markdown_to_html method on string/text arguments to convert it to html
+  ensure that you do this in posts/show as well in order to for it to parse the titles
+-->
+
+
+<h1> <%= markdown_to_html @post.title %> </h1>
+<p> <%= markdown_to_html @post.body %> </p>
 <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-warning'%>

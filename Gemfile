@@ -7,6 +7,8 @@ gem 'devise'
 gem 'faker'
 gem 'figaro', '1.0'
 
+gem 'redcarpet'
+
 gem 'bootstrap-sass'
 
 gem 'rails', '4.2.4'
