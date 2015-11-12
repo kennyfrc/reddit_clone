@@ -1,0 +1,27 @@
+<%= form_for [topic, post] do |f| %>
+<!---- # add error handling here -->
+ <% if post.errors.any? %>
+     <div class="alert alert-danger">
+       <h4>There are <%= pluralize(post.errors.count, "error") %>.</h4>
+       <ul>
+         <% post.errors.full_messages.each do |msg| %>
+           <li><%= msg %></li>
+         <% end %>
+       </ul>
+     </div>
+   <% end %>
+<!-- add blocks in lieu of the divs here... where it calls class 'form-group has-error' if there's an error and 'form-group' if there's no error.. use the helper method here where it takes a list of errors and a block-->
+  <%= form_group_tag(post.errors[:title]) do %>
+   <%= f.label :title %>
+   <%= f.text_field :title, class: 'form-control', placeholder: 'anything cool?' %>
+  <% end %>
+
+  <%= form_group_tag(post.errors[:body]) do %>
+   <%= f.label :body %>
+   <%= f.text_area :body, class: 'form-control', placeholder: 'add some details here' %>
+  <% end %>
+
+  <div class='form-group'>
+   <%= f.submit "Save", class: 'btn btn-warning' %>
+  </div>
+<% end %>

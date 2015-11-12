@@ -12,7 +12,7 @@
          <div class="media-body">
            <h4 class="media-heading">
              <%= link_to post.title, [@topic, post] %>
-             submitted <%= time_ago_in_words(created.at) %> by <%= post.user.name %><br>
+             submitted <%= time_ago_in_words(post.created_at) %> by <%= post.user.name %><br>
              <%= post.comments.count %> comments
            </h4>
          </div>
