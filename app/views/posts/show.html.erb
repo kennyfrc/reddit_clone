@@ -2,7 +2,17 @@
   ensure that you do this in posts/show as well in order to for it to parse the titles
 -->
 
-
 <h1> <%= markdown_to_html @post.title %> </h1>
-<p> <%= markdown_to_html @post.body %> </p>
+
+<div class = "row" >
+  <div class = "col-md-8">
+      <small>
+        <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+        submitted <%= time_ago_in_words(@post.created_at) %> ago by
+        <%= @post.user.name %>
+      </small>
+    <p> <%= markdown_to_html @post.body %> </p>
+  </div>
+</div>
+
 <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-warning'%>

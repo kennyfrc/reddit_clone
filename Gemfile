@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 gem 'devise'
 gem 'faker'
 gem 'figaro', '1.0'
