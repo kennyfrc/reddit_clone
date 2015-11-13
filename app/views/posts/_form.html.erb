@@ -1,10 +1,10 @@
 <%= form_for [topic, post] do |f| %>
-<!---- # add error handling here -->
+<!-- add error handling here, which all all organized under ONE div class which is "alert alert-danger"-->
  <% if post.errors.any? %>
      <div class="alert alert-danger">
        <h4>There are <%= pluralize(post.errors.count, "error") %>.</h4>
        <ul>
-         <% post.errors.full_messages.each do |msg| %>
+         <% post.errors.full_messages.each do |msg| %> <!-- array of error messages --> 
            <li><%= msg %></li>
          <% end %>
        </ul>
