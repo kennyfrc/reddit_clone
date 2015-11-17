@@ -5,21 +5,20 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
-    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:id])
     authorize @post
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new
+    @post = @topic.posts.new
     authorize @post
   end
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(post_params)
+    @post = @topic.posts.new(post_params)
     @post.user = current_user
     @post.topic = @topic
     authorize @post
