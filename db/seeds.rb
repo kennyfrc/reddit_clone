@@ -39,7 +39,7 @@ end
 
 100.times do
   Comment.create!(
-    # user: users.sample,
+    user: users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
   )
@@ -77,3 +77,4 @@ admin = User.new(
 puts "Seeding done"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{User.count} users created"

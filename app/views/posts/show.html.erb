@@ -12,6 +12,8 @@
         <%= @post.user.name %>
       </small>
     <p> <%= markdown_to_html @post.body %> </p>
+    <%= render partial: '/comments/form', locals: {topic: @topic, post: @post} %>
+    <%= render partial: 'comment', locals: {topic: @topic, post: @post, comments: @post.comments} %>
   </div>
 </div>
 
