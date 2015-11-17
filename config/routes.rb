@@ -3,13 +3,22 @@ Rails.application.routes.draw do
   devise_for :users
    resources :topics do
      resources :posts, except: [:index] do
-       resources :comments, only: [:create]
+       resources :comments, only: [:create, :destroy]
      end
+   end
+
+   resources :posts, only: [] do
+     resources :comments, only: [:create, :destroy]
+     post '/up-vote' => 'votes#up_vote', as: :up_vote
+     post '/down-vote' => 'votes#down_vote', as: :down_vote
    end
 
   resources :users, only: [:update]
 
   get 'about' => 'welcome#about'
+
+  post '/up-vote' => 'votes#up_vote', as: :up_vote
+  post '/down-vote' => 'votes#down_vote', as: :down_vote
 
   root to: 'welcome#index'
 
