@@ -1,5 +1,9 @@
   <div class="media-body">
     <% comments.each do |comment| %>
-      <p><%= comment.body %></p>
+      <p><%= comment.body %>
+        <small><i>
+          by <%= current_user.name %>
+        </small></i>
+      </p>
     <% end %>
   </div>
