@@ -13,7 +13,7 @@
            <h4 class="media-heading">
              <%= link_to (markdown_to_html post.title), [@topic, post] %>
              <small>
-             <%= image_tag(post.user.avatar.url) if post.user.avatar? %> <!-- make sure how elements are inherited and all! -->
+             <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %> <!-- make sure how elements are inherited and all! -->
              submitted <%= time_ago_in_words(post.created_at) %> by <%= post.user.name %><br>
              <%= post.comments.count %> comments
             </small>
@@ -21,6 +21,7 @@
          </div>
        </div>
      <% end %>
+     <%= will_paginate @posts %>
    </div>
    <div class="col-md-4">
      <% if policy(Post.new).create? %>
