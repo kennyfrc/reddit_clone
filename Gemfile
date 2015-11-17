@@ -3,18 +3,33 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
+# UI related
+
 gem 'will_paginate', '~> 3.0.5'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog'
-
-gem 'devise'
-gem 'faker'
-gem 'figaro', '1.0'
-
+gem 'bootstrap-sass'
 gem 'redcarpet'
 
-gem 'bootstrap-sass'
+# storage related
+gem 'fog'
+
+# authentication and authorization
+
+gem 'devise'
+gem 'figaro', '1.0'
+gem 'pundit'
+
+# seeding
+gem 'faker'
+
+# testing
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
+
 
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
@@ -44,7 +59,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'pundit'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
