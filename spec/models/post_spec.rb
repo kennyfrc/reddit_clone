@@ -1,8 +1,10 @@
 require 'rails_helper'
-
-include TestFactories
  
+
+
 describe Post do
+
+  include TestFactories
 
    describe "vote methods" do
  
@@ -29,15 +31,14 @@ describe Post do
          expect( @post.points ).to eq(1) # 3 - 2
        end
      end
+   end
 
-     describe '#create_vote' do
+    describe '#create_vote' do
        it "creates an up vote after creating a post" do
          post = associated_post
-         expect( @post.up_votes).to eq(0)
+         expect( post.up_votes).to eq(0)
          post.create_vote
-         expect( @post.up_votes).to eq(1)
+         expect( post.up_votes).to eq(1)
        end
      end
-
-   end
  end
