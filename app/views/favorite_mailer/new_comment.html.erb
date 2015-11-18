@@ -1,0 +1,25 @@
+<!-- not that this view does not use the applicaiton.html.erb layout we've defined
+  for theother layouts in our app. u can't even reference CSS becasue most clients
+  wont' use it -->
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta content = "text/html; charset=UTF-8" http-equiv="Content Type"/> 
+  </head>
+
+  <body>
+    <h1> new comment to "<%= @post.title %>"</h1>
+      <small>
+        By: <%= @comment.user.name %>
+      </small>
+    <p>
+      <%= @comment.body %>
+    </p>
+    <p>
+      <%= link_to "View Comment On Site", topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}")%> <!-- instead of using _path, you need to use _url b/c the user doesn't have that context-->
+    </p>
+  </body>
+
+
+</html>
