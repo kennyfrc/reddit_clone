@@ -1,0 +1,8 @@
+new comment to "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+By: <%= @comment.user.name %>
+
+<%= @comment.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}")%> <!-- instead of using _path, you need to use _url b/c the user doesn't have that context-->

@@ -19,7 +19,7 @@ describe Comment do
       allow (FavoriteMailer) #mailers allow you to send emails from your application 
                              #usign mailer classes and views. they work similarly to
                              #controllers. they inherit from ActionMailer::Base and
-                             #are placed in app/mailers and they have assoc app/views
+                             #are placed in app/mailers and they have assoc app/viewsc
         .to receive(:new_comment)
         .with(@user, @post, @comment)
         .and_return( double(deliver_now: true))
