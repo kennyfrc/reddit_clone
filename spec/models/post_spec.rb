@@ -1,10 +1,13 @@
 require 'rails_helper'
+
+include TestFactories
  
- describe Post do
+describe Post do
+
    describe "vote methods" do
  
      before do 
-       @post = Post.create(title: 'post title', body: 'Post bodies must be pretty long.')
+       @post = associated_post # instance variable should be set to a Post with a pre-made topic and a pre-made user
        3.times { @post.votes.create(value: 1) }
        2.times { @post.votes.create(value: -1) }
      end
@@ -26,5 +29,15 @@ require 'rails_helper'
          expect( @post.points ).to eq(1) # 3 - 2
        end
      end
+
+     describe '#create_vote' do
+       it "creates an up vote after creating a post" do
+         post = associated_post
+         expect( @post.up_votes).to eq(0)
+         post.create_vote
+         expect( @post.up_votes).to eq(1)
+       end
+     end
+
    end
  end
