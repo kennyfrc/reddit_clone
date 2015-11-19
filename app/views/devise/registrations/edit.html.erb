@@ -50,6 +50,12 @@
         <%= f.file_field :avatar %>
         <%= f.hidden_field :avatar_cache %>
       </div>
+      <div class= "form-group">
+        <%= f.label :email_favorites %>
+        <%= f.check_box :email_favorites %>
+        <p class ="help-block"> Be notified for new comments on your favorite posts! </p>
+        <!--- Values from the form will be passed into params as 1 or 0, permitted by user_params, and then converted by Rails to true or false in the database. -->
+      </div>
       <div class="form-group">
         <%= f.submit "Update", class: 'btn btn-success' %>
       </div>

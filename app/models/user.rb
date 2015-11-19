@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
   def favorited(post)
     favorites.where(post_id: post.id).first
   end
+
+  def voted(post)
+    votes.where(post_id: post.id).first #returns a vote if it exists.. 
+                                        #first is just a way for us to call it
+  end
 end
