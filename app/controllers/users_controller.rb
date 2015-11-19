@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :authenticate_user!
+   before_action :authenticate_user!, except: [:show]
  
    def update
      if current_user.update_attributes(user_params)
@@ -9,6 +9,14 @@ class UsersController < ApplicationController
        flash[:error] = "Invalid user information"
        redirect_to edit_user_registration_path
      end
+   end
+
+   def show
+      # we'll need to initialize some instance variables
+      # as we require @user @posts and @comments in specs/features/profile_spec.rb
+      @user = User.find(params[:id])
+      @comments = @user.comments
+      @posts = @user.posts.visible_to(current_user)
    end
  
    private

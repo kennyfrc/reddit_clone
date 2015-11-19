@@ -1,11 +1,14 @@
 class CommentsController < ApplicationController
 
   def create
-    @topic = Topic.find(params[:topic_id]) # to establish topic/X in topic/X/post/X/comments
-    @post = Post.find(params[:post_id]) #to establish post/X in topic/X/post/X/comments
-    @comment = @post.comments.new(comment_params) #to create a new comment (which is currently just part of post)
-    @comment.user = current_user 
-    @comment.post = @post #there's no topic because comment technically is not part of topic
+    @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.find(params[:post_id]) #to establish post/X in topic/X/post/X/comments
+    @comments = @post.comments
+    
+    @comment = current_user.comments.build(comment_params) #to create a new comment (which is currently just part of post)
+    @comment.post = @post
+
+    authorize @comment
     if @comment.save
       flash[:notice] = "Comment was saved"
       redirect_to [@topic, @post] #just topic/X/post/X
@@ -17,7 +20,8 @@ class CommentsController < ApplicationController
 
   def destroy
      @topic = Topic.find(params[:topic_id])
-     @post = Post.find(params[:post_id])
+     @post = @topic.posts.find(params[:post_id])
+     
      @comment = @post.comments.find(params[:id])
  
      authorize @comment

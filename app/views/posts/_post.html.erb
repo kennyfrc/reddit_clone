@@ -1,0 +1,14 @@
+<div class="media">
+  <%= render partial: 'votes/voter', locals: {post: post}%>
+   <div class="media-body">
+     <h4 class="media-heading">
+       <%= link_to (markdown_to_html post.title), [post.topic, post] %><!--  remember to change the instance variable call @topic to post.topic because you're in the context of a post view.. not in a topic/show view -->
+       </h4>
+       <small>
+       <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %> <!-- make sure how elements are inherited and all! -->
+       submitted <%= time_ago_in_words(post.created_at) %> by <%= post.user.name %><br>
+       <%= post.comments.count %> comments
+      </small>
+     
+   </div>
+</div>

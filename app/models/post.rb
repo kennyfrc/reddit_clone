@@ -6,6 +6,10 @@ class Post < ActiveRecord::Base
   belongs_to :topic
 
   default_scope { order('rank DESC')} #we got this by doing generate migration AddRankToPosts
+    scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true)}
+    # joins basically takes all posts for WHERE a topic is public
+    # read up on the rails guide to active record to do SQL queries via ACtiveRecord
+    # then go apply visible_to in your controllers
 
   validates :title, length: {minimum: 5}, presence: true
   validates :body, length: {minimum: 20}, presence: true
