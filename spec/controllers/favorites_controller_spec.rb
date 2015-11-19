@@ -7,7 +7,7 @@ describe FavoritesController do
 
   before do
     @post = associated_post
-    @user = authorized_user
+    @user = authenticated_user
     sign_in @user
   end
 
@@ -15,10 +15,9 @@ describe FavoritesController do
     it "creates a favorite for the current user and specified post" do
       expect( @user.favorites.find_by_post_id(@post.id)).to be_nil
 
-      post :create, {post_id: @post_id} # post as in the HTTP request. not the model.
+      post :create, {post_id: @post.id} # post as in the HTTP request. not the model.
 
-      expect( @user.favorites.find_by_post_id(@post.id)).not_to be_nil #finds a single favorite
-                                                                       #or return nil
+      expect( @user.favorites.find_by_post_id(@post.id)).not_to be_nil #finds a single favorite #or return nil
     end
   end
 
