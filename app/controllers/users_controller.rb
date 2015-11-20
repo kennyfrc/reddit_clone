@@ -18,6 +18,11 @@ class UsersController < ApplicationController
       @comments = @user.comments
       @posts = @user.posts.visible_to(current_user)
    end
+
+   # paginate the top ranked usersusers
+   def index
+      @users = User.top_rated.paginate(page: params[:page], per_page: 10)
+   end
  
    private
  

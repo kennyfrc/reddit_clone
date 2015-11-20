@@ -1,20 +1,18 @@
-<h1>All Posts</h1>
+<!-- # create a row div
+# create a col-mid-8 div
+# create a h1 popular posts
+# create a p class -> active posts thsi sweek
+# render @posts
+# will_paginate @posts
+ -->
 
-<% if policy(Post.new).create? %>
-  <%= link_to "New Post", new_post_path, class: 'btn btn-success' %> 
-<% end %> 
-
-
-<% @posts.each do |post| %>
-  <div class="media">
-    <div class="media-body">
-      <div class="media-heading">
-        <p> <%= link_to post.title, post_path(post.id)%></p>
-        <small>
-          submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-          <%= post.comments.count %> comments
-        </small>
-      </div>
-    </div>
+<div class = "row">
+  <div class = "col-md-8">
+    <h1> Popular Posts </h1>
+      <p class = "lead"> Active Posts This Week </p>
+      <%= render @posts %>
+      <%= will_paginate @posts %>
   </div>
-<% end %> 
+  <div class = "col-md-4">
+  </div>
+</div>
