@@ -12,9 +12,12 @@
         <%= @post.user.name %>
       </small>
     <p> <%= markdown_to_html @post.body %> </p>
+     <div class='js-comments'>
     <%= render partial: 'comments/comment', locals: {topic: @topic, post: @post, comments: @post.comments, comment: @comment }%>
-    <%= render partial: 'comments/form', locals: {topic: @topic, post: @post} %>
-
+    </div>
+ <div class='new-comment'>
+    <%= render partial: 'comments/form', locals: {topic: @topic, post: @post, comment: @post.comments.new} %>
+ </div>
   </div>
 </div>
 

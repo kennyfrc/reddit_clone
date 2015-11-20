@@ -1,0 +1,8 @@
+ <% if @comment.destroyed? %>
+   $('#comment-' +<%= @comment.id %>).hide();
+   $('.js-comments-count').html("<%= pluralize(@comment.user.comments.count, 'comment') %>");
+ <% else %>
+   $('#comment-' +<%= @comment.id %>).prepend("<div class='alert alert-danger'><%= flash[:error] %></div>");
+ <% end %>
+// this uses the came anchor trick as we used in our emails
+// it's a useful way to select a specific comment, because it dynamically generates the selector ID usign ruby code

@@ -1,36 +1,44 @@
 class CommentsController < ApplicationController
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.find(params[:post_id]) #to establish post/X in topic/X/post/X/comments
+    @post = Post.find(params[:post_id])
     @comments = @post.comments
-    
-    @comment = current_user.comments.build(comment_params) #to create a new comment (which is currently just part of post)
+
+    @comment = Comment.new( comment_params )
+    @comment.user = current_user
     @comment.post = @post
+    @new_comment = Comment.new
 
     authorize @comment
+
     if @comment.save
-      flash[:notice] = "Comment was saved"
-      redirect_to [@topic, @post] #just topic/X/post/X
+      flash[:notice] = "Comment was created."
     else
-      flash[:error] = "Something went wrong. Please try again"
-      redirect_to [@topic, @post] #just topic/X/post/X
+      flash[:error] = "There was an error saving the comment. Please try again."
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def destroy
      @post = Post.find(params[:post_id])
-     
+     @topic = @post.topic
      @comment = @post.comments.find(params[:id])
  
      authorize @comment
      if @comment.destroy
        flash[:notice] = "Comment was removed."
-       redirect_to [@post.topic, @post]
      else
        flash[:error] = "Comment couldn't be deleted. Try again."
-       redirect_to [@post.topic, @post]
      end
+   end
+
+   respond_to do |format| #enable the controller to respond via ajax
+     format.html
+     format.js
    end
 
   private

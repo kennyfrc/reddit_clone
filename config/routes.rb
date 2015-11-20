@@ -1,29 +1,24 @@
 Rails.application.routes.draw do
 
   devise_for :users
-   resources :topics do
+  resources :users, only: [:update, :show, :index]
+ 
+ resources :topics do
      resources :posts, except: [:index], controller: 'topics/posts' do
-       resources :comments, only: [:create, :destroy]
-       resources :favorites, only: [:create, :destroy]
-       post '/up-vote' => 'votes#up_vote', as: :up_vote
-       post '/down-vote' => 'votes#down_vote', as: :down_vote
-     end
-   end
+      resources :summaries, except: [:index]
+    end
+  end
 
    resources :posts, only: [:index] do
      resources :comments, only: [:create, :destroy]
      resources :favorites, only: [:create, :destroy]
      post '/up-vote' => 'votes#up_vote', as: :up_vote
      post '/down-vote' => 'votes#down_vote', as: :down_vote
+ 
    end
 
-  resources :users, only: [:update, :show, :index]
 
-  get 'about' => 'welcome#about'
-
-  post '/up-vote' => 'votes#up_vote', as: :up_vote
-  post '/down-vote' => 'votes#down_vote', as: :down_vote
-
+ get 'about' => 'welcome#about'
   root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
