@@ -27,7 +27,7 @@
 <div class = "row">
   <div class = "tabbable tabs-left">
     <ul class = "nav nav-tabs">
-      <li class = "active" ><a href = "posts" data-toggle="tab">Posts</a></li>
+      <li class = "active" ><a href = "#posts" data-toggle="tab">Posts</a></li>
       <li><a href = "#comments" data-toggle="tab">Commments</a></li>
     </ul>
     <div class = "tab-content">
@@ -35,7 +35,7 @@
         <%= render @posts %>
       </div>
       <div class = "tab-pane" id="comments">
-        <%= render partial: 'comments/comment', locals: {comments: @user.comments } %> <!-- for some reason render @comments isn't working -->
+        <%= render partial: 'comments/comment', locals: {comments: @user.comments, topic: @topic } %> <!-- for some reason render @comments isn't working -->
       </div>
     </div>
   </div>
