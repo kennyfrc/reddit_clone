@@ -10,6 +10,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'bootstrap-sass'
 gem 'redcarpet'
+gem 'factory_girl_rails', '~> 4.0'
 
 # storage related
 gem 'fog'
