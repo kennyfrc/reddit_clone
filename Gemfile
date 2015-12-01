@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-
+gem 'pry-rails', :group => :development
 # UI related
 
 gem 'will_paginate', '~> 3.0.5'

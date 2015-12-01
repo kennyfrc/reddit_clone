@@ -21,3 +21,6 @@ class Vote < ActiveRecord::Base
     post.update_rank
   end
 end
+
+# session variables
+# better to store numbers in the front end
