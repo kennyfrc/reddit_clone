@@ -23,4 +23,7 @@ class Vote < ActiveRecord::Base
 end
 
 # session variables
-# better to store numbers in the front end
+# better to store numbers in the front end / store numbers / store ooperators
+# ['123','+','456','/','2']
+# 123 + 456 / 2
+# some placehodler text
