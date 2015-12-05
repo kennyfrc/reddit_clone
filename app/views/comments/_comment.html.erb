@@ -1,5 +1,5 @@
 <div class="media-body">
-  <% comments.each do |comment| %>
+  <% @comments.each do |comment| %>
     <div id='comment-<%= comment.id %>'>
       <div class = "media-left">
         <%= image_tag(comment.user.avatar.small.url, class: "media-object") if comment.user.avatar? %>
