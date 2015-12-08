@@ -34,8 +34,11 @@
       <div class = "tab-pane active" id="posts">
         <%= render @posts %>
       </div>
+
       <div class = "tab-pane" id="comments">
-        <%= render partial: 'comments/comment', locals: {comments: @user.comments, topic: @topic } %> <!-- for some reason render @comments isn't working -->
+      <% @comments.each do |comment| %>
+        <%= render partial: 'comments/comment', locals: {comment: comment }%>
+      <% end %>
       </div>
     </div>
   </div>

@@ -1,18 +1,14 @@
-<div class="media-body">
-  <% @comments.each do |comment| %>
-    <div id='comment-<%= comment.id %>'>
-      <div class = "media-left">
-        <%= image_tag(comment.user.avatar.small.url, class: "media-object") if comment.user.avatar? %>
-      </div>
-      <div class="media">
-          <small>
-            <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
-              <% if policy(comment).destroy? %>
-                | <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true %>
-              <% end %>
-          </small>
-        <p><%= comment.body %></p>
-      </div>
-    </div>
-  <% end %>
+<div id='comment-<%= comment.id %>'>
+  <div class = "media-left">
+    <%= image_tag(comment.user.avatar.small.url, class: "media-object") if comment.user.avatar? %>
+  </div>
+  <div class="media">
+      <small>
+        <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+          <% if policy(comment).destroy? %>
+            | <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true %>
+          <% end %>
+      </small>
+    <p><%= comment.body %></p>
+  </div>
 </div>

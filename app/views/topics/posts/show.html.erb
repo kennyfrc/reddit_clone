@@ -13,7 +13,12 @@
       </small>
     <p> <%= markdown_to_html @post.body %> </p>
      <div class='js-comments'>
-    <%= render partial: 'comments/comment', locals: {topic: @topic, post: @post, comments: @post.comments, comment: @comment }%>
+    <div class="media-body">
+      <% @comments.each do |comment| %>
+        <%= render partial: 'comments/comment', locals: {comment: comment }%>
+      <% end %>
+    </div>
+
     </div>
  <div class='new-comment'>
     <%= render partial: 'comments/form', locals: {topic: @topic, post: @post, comment: @post.comments.new} %>
